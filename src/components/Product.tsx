@@ -33,8 +33,8 @@ font-weight: ${props => props.active ? '400' : '700'};
 pointer-events: none;
 `
 
-const Count = styled.span<{ active?: boolean }>`
-color: ${props => props.active? 'red': 'green'};
+const Count = styled.span<{ active?: boolean; value?: number }>`
+color: ${props => props.active ? 'red' : 'green'};
 pointer-events: none;
 `
 
@@ -42,14 +42,22 @@ export function Product({ product }: ProductProps) {
     const [moreInfo, setMoreInfo] = useState(false)
     const { title, id, info, count, active } = product
 
-    console.log(moreInfo, 'click')
     function handleMoreInfo() {
         setMoreInfo(!moreInfo)
     }
+
+    function weight() {
+        if (count >= 50) {
+        return 'bold'
+        } else if (count <= 40) {
+            return 'lighter'
+    }
+}
+
 return (
     <Box $background={active}>
             <Title active={active}>{title}</Title>
-        <Count active={!active}>{count}</Count>
+        <Count style={{fontWeight: weight()}} active={!active}>{count}</Count>
         <Button active={moreInfo} onClick={
             handleMoreInfo
         }>{moreInfo?'hide details':'show details'}</Button>
