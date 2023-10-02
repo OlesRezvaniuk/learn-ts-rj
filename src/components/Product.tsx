@@ -7,19 +7,35 @@ interface ProductProps {
 }
 
 const Button = styled.button<{active?:boolean}>`
-background-color: ${props => props.active?'red':'white'};
+background-color: ${props => props.active ? 'red' : 'white'};
+transition: 250ms;
+&:hover {
+    color: red;
+    background-color: ${props => props.active ? 'purple' : 'grey'};
+}
 `
 
 const Box = styled.div<{ $background?: boolean; }>`
-background: ${props => props.$background?'grey':'blue'};
+background: ${props => props.$background ? 'grey' : 'blue'};
+transition: 250ms;
+display: block;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+&:hover {
+    color: red;
+    box-shadow: 1px 1px 1px black;
+}
 `
 
 const Title = styled.h1<{ active?: boolean; }>`
-font-weight: ${props => props.active? '400':'700'}
+font-weight: ${props => props.active ? '400' : '700'};
+pointer-events: none;
 `
 
 const Count = styled.span<{ active?: boolean }>`
-color: ${props => props.active? 'red': 'green'}
+color: ${props => props.active? 'red': 'green'};
+pointer-events: none;
 `
 
 export function Product({ product }: ProductProps) {

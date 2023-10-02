@@ -1,6 +1,13 @@
 import { Product } from "./components/Product";
 import { IBox } from "./models";
+import styled from "styled-components";
 
+const ProductsBox = styled.div`
+display: flex;
+flex-direction: column;
+gap: 30px;
+padding-top: 30px;
+`
 
 const dataProduct : IBox[] = [
   {
@@ -28,13 +35,13 @@ const dataProduct : IBox[] = [
 
 function App() {
   return (
-    <div className="container">
+    <ProductsBox className="container">
       {dataProduct.map(i => {
         return (
         <Product key={i.id}  product={i}/>
       )
       })}
-    </div>
+    </ProductsBox>
   );
 }
 
